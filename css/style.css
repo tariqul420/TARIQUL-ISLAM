@@ -1,0 +1,692 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+/* common and reset code start hear */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(https://wallpapers-clan.com/wp-content/uploads/2023/10/night-forest-with-wild-animals-desktop-wallpaper-preview.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* common and reset code ends hear */
+
+/* header start hear */
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+#bars-icon{
+    color: #fff;
+    display: none;
+}
+
+.t-logo{
+    width: 4rem;
+}
+
+.navigation a{
+    position: relative;
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    text-transform: uppercase;
+}
+
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+}
+
+.navigation a:hover:after{
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.navigation .btnlogin-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #fff;
+    margin-left: 40px;
+    transition: 0.5s;
+    text-transform: uppercase;
+}
+
+.navigation .btnlogin-popup:hover{
+    background: #fff;
+    color: #162938;
+}
+
+.navigation .profile-icon{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: white 1px solid;
+    filter: saturate(0);
+    transition: filter 0.3s;
+}
+
+.navigation .profile-icon:hover{
+    filter: saturate(1);
+}
+
+/*! label #btn,
+label #cancel{
+    color: white;
+    font-size: 30px;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+} */
+
+/*! #check{
+    display: none;
+} */
+
+/* header ends hear */
+
+/* login page start hear */
+
+.wrapper{
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .05);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform 0.5s ease, height 0.2s ease;
+}
+
+.wrapper.active-popup{
+    transform: scale(1)
+}
+
+.wrapper.active {
+    height: 520px;
+}
+
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login{
+    transition: transform  0.18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login{
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .form-box.register{
+    position: absolute;
+    transform: none;
+    transform: translate(400px);
+}
+
+.wrapper.active .form-box.register{
+    transition: transform  0.18s ease;
+    transform: translateX(0);
+}
+
+.wrapper .icon-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: red;
+    font-size: 2rem;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-box h2{
+    font-size: 2rem;
+    color: #162938;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translate(-50%);
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.input-box .pass{
+    left: 3rem;
+}
+
+.input-box .user{
+    left: 3rem;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top: -5px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2rem;
+    color: #162938;
+    line-height: 57px;
+}
+
+.remember-forgot{
+    font-size: 0.9em;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input{
+    accent-color: #162938;
+    margin-right: 3px;
+}
+
+.remember-forgot a{
+    color: #162938;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+.btn{
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.login-register{
+    font-size: 0.9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-register p a:hover{
+    text-decoration: underline;
+}
+/* login page ends hear */
+
+
+
+/* about section start hear */
+.about{
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .05);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    transition: transform 0.5s ease, height 0.2s ease;
+    flex-wrap: wrap;
+}
+
+.about:hover{
+    box-shadow: 10px 20px 20px 10px black;
+    transition: 0.5s;
+}
+
+.about .about-card{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.about h2{
+    color: red;
+    margin-top: 50px;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+.about .about-icon a{
+    color: #162938;
+    font-size: 25px;
+    letter-spacing: 20px;
+    justify-content: center;
+    transition: color 0.9s;
+}
+
+.about .about-icon a:hover{
+    color: #fff;
+}
+
+/* about section ends hear */
+
+/* profile start hear */
+.profile{
+    position: relative;
+    width: 400px;
+    height: 470px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .05);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease, height 0.2s ease;
+    flex-direction: column;
+}
+
+.profile:hover{
+    box-shadow: 10px 20px 20px 10px black;
+    transition: 0.5s;
+}
+
+.profile-img{
+    width: 18rem;
+    height: 18rem;
+    border-radius: 50%;
+    border: 1px solid;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-buttons i{
+    color: #162938;
+    padding: 10px 10px;
+    letter-spacing: 10px;
+    font-size: 30px;
+}
+
+.profile .phn{
+    color: #162938;
+}
+
+.profile-buttons i a{
+    size: 1px;
+}
+
+.profile-buttons i:hover{
+    color: #fff;
+}
+/* profile ends hear */
+
+/* conrtact section start hear */
+.container{
+    width: 85%;
+    border-radius: 20px;
+    padding: 20px 60px 30px 40px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+}
+
+.container:hover{
+    box-shadow: 10px 20px 20px 10px black;
+    transition: 0.5s;
+}
+
+.container .content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container .content a{
+    text-decoration: none;
+}
+
+.container .content .left-side{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    position: relative;
+}
+.content .left-side::before{
+    content: '';
+    position: absolute;
+    height: 70%;
+    width: 2px;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #afafb6;
+}
+.content .left-side .details{
+    margin: 14px;
+    text-align: center;
+}
+.content .left-side .details i{
+    font-size: 30px;
+    color: gold;
+    margin-bottom: 10px;
+}
+.content .left-side .details .topic{
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+}
+.content .left-side .details .text-one,
+.content .left-side .details .text-two{
+    font-size: 14px;
+    color: #afafb6;
+}
+.container .content .right-side{
+    width: 75%;
+    margin-left: 75px;
+}
+.content .right-side .topic-text{
+    font-size: 23px;
+    font-weight: 600;
+    color: red;
+}
+.right-side .input-box{
+    height: 50px;
+    width: 100%;
+    margin: 12px 0;
+}
+.right-side .input-box input,
+.right-side .input-box textarea{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: #F0F1F8;
+    border-radius: 6px;
+    padding: 0 15px;
+    resize: none;
+}
+.right-side .message-box{
+    min-height: 110px;
+}
+.right-side .input-box textarea{
+    padding-top: 6px;
+}
+.right-side .button{
+    display: inline-block;
+    margin-top: 12px;
+}
+.right-side .button input[type="button"]{
+    color: #fff;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: #3e2093;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.button input[type="button"]:hover{
+    background: #5029bc;
+}
+/* conrtact section ends hear */
+
+/* service section start hear */
+#error-page{
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    right: 15%;
+    bottom: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(200px);
+
+}
+#error-page .content{
+    max-width: 600px;
+    text-align: center;
+}
+
+.content h2.header{
+    font-size: 18vw;
+    line-height: 1em;
+    position: relative;
+}
+.content h2.header:after{
+    position: absolute;
+    content: attr(data-text);
+    top: 0;
+    left: 0;
+    right: 0;
+    background: -webkit-repeating-linear-gradient(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.25);
+    animation: animate 10s ease-in-out infinite;
+}
+@keyframes animate {
+    0%{
+    background-position: 0 0;
+    }
+    25%{
+    background-position: 100% 0;
+    }
+    50%{
+    background-position: 100% 100%;
+    }
+    75%{
+    background-position: 0% 100%;
+    }
+    100%{
+    background-position: 0% 0%;
+    }
+}
+.content h4{
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #000;
+    font-size: 2em;
+    max-width: 600px;
+    position: relative;
+}
+.content h4:after{
+    position: absolute;
+    content: attr(data-text);
+    top: 0;
+    left: 0;
+    right: 0;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.content p{
+    font-size: 1.2em;
+    color: #0d0d0d;
+}
+.content .btns{
+    margin: 25px 0;
+    display: inline-flex;
+}
+.content .btns a{
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+    border: 2px solid #69a6ce;
+    color: #69a6ce;
+    font-weight: 500;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+.content .btns a:hover{
+    background: #69a6ce;
+    color: #fff;
+}
+/* service section ends hear */
+
+/* responsive web desigen start hear */
+@media (max-width: 950px) {
+.container{
+    width: 90%;
+    padding: 30px 40px 40px 35px ;
+}
+
+.container .content .right-side{
+    width: 75%;
+    margin-left: 55px;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: -35px;
+    padding: 1rem;
+}
+#bars-icon{
+    display: block;
+    margin-top: 1.2rem;
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+
+}
+@media (max-width: 820px) {
+    .container{
+    margin: 40px 0;
+    height: 100%;
+}
+.container .content{
+    flex-direction: column-reverse;
+    }
+.container .content .left-side{
+    width: 100%;
+    flex-direction: row;
+    margin-top: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.container .content .left-side::before{
+    display: none;
+}
+.container .content .right-side{
+    width: 100%;
+    margin-left: 0;
+}
+}
+
+@media (max-width: 600px) {
+    
+}
+
+/* responsive web desigen ends hear */
